@@ -1,5 +1,5 @@
 {
-  "name": "otto-node-pack",
+  "name": "otto-node-package",
   "version": "1.0.0",
   "description": "otto federation management",
   "main": "index.js",
