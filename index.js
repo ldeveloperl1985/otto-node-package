@@ -6,18 +6,12 @@ var bodyParser = require('body-parser');
 var app = express();
 var server = require('http').Server(app);
 
-var mongoose = require('mongoose');
-var Promise = require('bluebird');
-mongoose.Promise = Promise;
+// var mongoose = require('mongoose');
+// var Promise = require('bluebird');
+// mongoose.Promise = Promise;
 
 module.exports = function (config) {
   var module = {};
-
-  mongoose.createConnection(config.dbConfig, function (error) {
-    if (error) {
-      console.log(error);
-    }
-  });
 
   // set routes
   var routesIndex = require('./routes/index')(config);
@@ -29,27 +23,27 @@ module.exports = function (config) {
   var routesBadge = require('./routes/badge')(config);
   var routesSchema = require('./routes/schema')(config);
 
-  app.set('port', config.port);
-
-//Swagger Settings
-  app.use(swagger.init(app, {
-    apiVersion: '1.0',
-    swaggerVersion: '2.1.5',
-    basePath: config.baseURL,
-    swaggerURL: '/swagger',
-    swaggerJSON: '/api-docs.json',
-    swaggerUI: path.join(__dirname, '/public/swagger/'),
-    //apis: ['./routes/index.js', './routes/federation.js', './routes/participant.js', './routes/entity.js', './routes/metadata.js', './routes/badge.js', './routes/schema.js']
-    apis: [
-      path.join(__dirname, '/routes/index.js'),
-      path.join(__dirname, '/routes/federation.js'),
-      path.join(__dirname, '/routes/participant.js'),
-      path.join(__dirname, '/routes/entity.js'),
-      path.join(__dirname, '/routes/metadata.js'),
-      path.join(__dirname, '/routes/badge.js'),
-      path.join(__dirname, '/routes/schema.js')
-    ]
-  }));
+  if (config.isServerStart) {
+    //Swagger Settings
+    app.use(swagger.init(app, {
+      apiVersion: '1.0',
+      swaggerVersion: '2.1.5',
+      basePath: config.baseURL,
+      swaggerURL: '/swagger',
+      swaggerJSON: '/api-docs.json',
+      swaggerUI: path.join(__dirname, '/public/swagger/'),
+      //apis: ['./routes/index.js', './routes/federation.js', './routes/participant.js', './routes/entity.js', './routes/metadata.js', './routes/badge.js', './routes/schema.js']
+      apis: [
+        path.join(__dirname, '/routes/index.js'),
+        path.join(__dirname, '/routes/federation.js'),
+        path.join(__dirname, '/routes/participant.js'),
+        path.join(__dirname, '/routes/entity.js'),
+        path.join(__dirname, '/routes/metadata.js'),
+        path.join(__dirname, '/routes/badge.js'),
+        path.join(__dirname, '/routes/schema.js')
+      ]
+    }));
+  }
 
   app.use(express.static(path.join(__dirname, 'public')));
 

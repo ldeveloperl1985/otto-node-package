@@ -12,6 +12,7 @@ var config = {
   contextACR: "https://rawgit.com/KantaraInitiative/wg-otto/master/html/otto-vocab-1.0.html#acr",
   contextSchemaClass: "https://rawgit.com/KantaraInitiative/wg-otto/master/html/otto-vocab-1.0.html#schema",
   contextBadge: "https://w3id.org/openbadges/v2",
+  RA_ID: "",
   isServerStart: true
 };
 
