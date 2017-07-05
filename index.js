@@ -31,8 +31,6 @@ module.exports = function (config) {
 
   app.set('port', config.port);
 
-  console.log(path.join(__dirname, '/routes/federation.js'));
-
 //Swagger Settings
   app.use(swagger.init(app, {
     apiVersion: '1.0',
