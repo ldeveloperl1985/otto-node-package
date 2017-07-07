@@ -18,19 +18,22 @@ var config = {
 
 var otto = require('./index')(config);
 
-var req = {
-  params: {
-    mid: "595a47ea4ada485b40dd652b",
-    fid: "595a41b8665cbc58c77b4e79"
-  }
-};
-
-otto.controller.federationcontroller.addMetadata(req, function (err, part) {
-  if (err) {
-    console.log('error', err);
-  }
-
-  console.log('metadata : ', part);
-});
+// var req = {
+//   body: {
+//     "name": "entity 1",
+//     "url": "http://otto-test.gluu.org/otto/entity",
+//     "description": "entity entity",
+//     "registeredBy": "58f5da4957d53d2ffbbb31df",
+//     "redirectUri": "dsdsdsd"
+//   }
+// };
+//
+// otto.controller.entitycontroller.addEntity(req, function (err, part) {
+//   if (err) {
+//     console.log('error', err);
+//   }
+//
+//   console.log('metadata : ', part);
+// });
 
 // 595a47ea4ada485b40dd652b
