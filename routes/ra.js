@@ -6,7 +6,7 @@ var setting = require('../setting');
 module.exports = function (config) {
   var requirementController = require('../lib/controller/racontroller')(config);
 
-  router.get(setting.registrationAuthorityURL + '/:id', function (req, res) {
+  router.get(setting.registrationAuthority + '/:id', function (req, res) {
     try {
       requirementController.findRequirement(req, function (err, data) {
         if (err) {
